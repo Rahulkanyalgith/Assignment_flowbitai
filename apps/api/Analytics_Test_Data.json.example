@@ -1,0 +1,169 @@
+[
+  {
+    "invoiceNumber": "INV-2024-001",
+    "vendor": {
+      "id": "VND-001",
+      "vendorId": "VND-001",
+      "name": "Acme Corporation",
+      "email": "billing@acme.com",
+      "phone": "+1-555-0100",
+      "address": "123 Business St",
+      "city": "New York",
+      "state": "NY",
+      "country": "USA",
+      "postalCode": "10001",
+      "taxId": "12-3456789",
+      "paymentTerms": "Net 30"
+    },
+    "customer": {
+      "id": "CUST-001",
+      "customerId": "CUST-001",
+      "name": "Tech Solutions Inc",
+      "email": "ap@techsolutions.com",
+      "phone": "+1-555-0200",
+      "address": "456 Tech Ave",
+      "city": "San Francisco",
+      "state": "CA",
+      "country": "USA",
+      "postalCode": "94102"
+    },
+    "invoiceDate": "2024-01-15",
+    "dueDate": "2024-02-15",
+    "status": "PENDING",
+    "currency": "USD",
+    "subtotal": 10000.00,
+    "tax": 800.00,
+    "taxAmount": 800.00,
+    "total": 10800.00,
+    "totalAmount": 10800.00,
+    "amountPaid": 0.00,
+    "paid": 0.00,
+    "category": "Software",
+    "type": "Software",
+    "description": "Monthly software subscription and licenses",
+    "notes": "Payment due by end of month",
+    "documentUrl": "https://example.com/invoices/INV-2024-001.pdf",
+    "attachmentUrl": "https://example.com/invoices/INV-2024-001.pdf",
+    "lineItems": [
+      {
+        "description": "Software License - Premium Plan",
+        "quantity": 10,
+        "unitPrice": 800.00,
+        "price": 800.00,
+        "amount": 8000.00,
+        "category": "Software",
+        "taxRate": 8.0,
+        "taxAmount": 640.00
+      },
+      {
+        "description": "Setup Fee",
+        "quantity": 1,
+        "unitPrice": 2000.00,
+        "price": 2000.00,
+        "amount": 2000.00,
+        "category": "Services",
+        "taxRate": 8.0,
+        "taxAmount": 160.00
+      }
+    ],
+    "items": [
+      {
+        "description": "Software License - Premium Plan",
+        "quantity": 10,
+        "unitPrice": 800.00,
+        "price": 800.00,
+        "amount": 8000.00,
+        "category": "Software",
+        "taxRate": 8.0,
+        "taxAmount": 640.00
+      }
+    ],
+    "payments": [
+      {
+        "date": "2024-01-20",
+        "amount": 5000.00,
+        "method": "BANK_TRANSFER",
+        "paymentMethod": "BANK_TRANSFER",
+        "reference": "TXN-20240120-001",
+        "referenceNumber": "TXN-20240120-001",
+        "notes": "Partial payment"
+      }
+    ]
+  },
+  {
+    "invoiceNumber": "INV-2024-002",
+    "vendor": {
+      "id": "VND-002",
+      "vendorId": "VND-002",
+      "name": "Office Supplies Plus",
+      "email": "sales@officesupplies.com",
+      "phone": "+1-555-0101",
+      "address": "789 Supply Lane",
+      "city": "Chicago",
+      "state": "IL",
+      "country": "USA",
+      "postalCode": "60601",
+      "taxId": "98-7654321",
+      "paymentTerms": "Net 15"
+    },
+    "customer": {
+      "id": "CUST-001",
+      "customerId": "CUST-001",
+      "name": "Tech Solutions Inc",
+      "email": "ap@techsolutions.com"
+    },
+    "invoiceDate": "2024-01-20",
+    "dueDate": "2024-02-04",
+    "status": "PAID",
+    "currency": "USD",
+    "subtotal": 1500.00,
+    "tax": 120.00,
+    "taxAmount": 120.00,
+    "total": 1620.00,
+    "totalAmount": 1620.00,
+    "amountPaid": 1620.00,
+    "paid": 1620.00,
+    "category": "Office Supplies",
+    "type": "Office Supplies",
+    "description": "Monthly office supplies order",
+    "lineItems": [
+      {
+        "description": "Paper - Letter Size (10 reams)",
+        "quantity": 10,
+        "unitPrice": 50.00,
+        "amount": 500.00,
+        "category": "Office Supplies",
+        "taxRate": 8.0,
+        "taxAmount": 40.00
+      },
+      {
+        "description": "Pens - Blue Ink (Box of 50)",
+        "quantity": 20,
+        "unitPrice": 25.00,
+        "amount": 500.00,
+        "category": "Office Supplies",
+        "taxRate": 8.0,
+        "taxAmount": 40.00
+      },
+      {
+        "description": "Printer Toner",
+        "quantity": 5,
+        "unitPrice": 100.00,
+        "amount": 500.00,
+        "category": "Office Supplies",
+        "taxRate": 8.0,
+        "taxAmount": 40.00
+      }
+    ],
+    "payments": [
+      {
+        "date": "2024-01-25",
+        "amount": 1620.00,
+        "method": "CREDIT_CARD",
+        "paymentMethod": "CREDIT_CARD",
+        "reference": "CC-20240125-002",
+        "referenceNumber": "CC-20240125-002"
+      }
+    ]
+  }
+]
