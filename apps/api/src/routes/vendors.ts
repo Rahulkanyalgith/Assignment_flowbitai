@@ -32,7 +32,7 @@ vendorsRouter.get('/top10', async (req, res) => {
     });
 
     // Fetch vendor details
-    const vendorIds = topVendors.map((v) => v.vendorId);
+    const vendorIds = topVendors.map((v: { vendorId: string }) => v.vendorId);
     const vendors: VendorInfo[] = await prisma.vendor.findMany({
       where: {
         vendorId: {
@@ -45,9 +45,9 @@ vendorsRouter.get('/top10', async (req, res) => {
       },
     });
 
-    const vendorMap = new Map(vendors.map((v) => [v.vendorId, v.name]));
+    const vendorMap = new Map(vendors.map((v: VendorInfo) => [v.vendorId, v.name]));
 
-    const result: Array<{ vendorId: string; vendorName: string; totalSpend: number; invoiceCount: number }> = topVendors.map((vendor) => ({
+    const result: Array<{ vendorId: string; vendorName: string; totalSpend: number; invoiceCount: number }> = topVendors.map((vendor: { vendorId: string; _sum: { totalAmount: number | null }; _count: { id: number } }) => ({
       vendorId: vendor.vendorId,
       vendorName: vendorMap.get(vendor.vendorId) || 'Unknown',
       totalSpend: (vendor._sum.totalAmount ?? 0),

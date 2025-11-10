@@ -29,7 +29,7 @@ categorySpendRouter.get('/', async (req, res) => {
       },
     });
 
-    const result: Array<{ category: string; totalSpend: number; invoiceCount: number }> = categorySpend.map((cat) => ({
+    const result: Array<{ category: string; totalSpend: number; invoiceCount: number }> = categorySpend.map((cat: { category: string | null; _sum: { totalAmount: number | null }; _count: { id: number } }) => ({
       category: cat.category ?? 'Uncategorized',
       totalSpend: (cat._sum.totalAmount ?? 0),
       invoiceCount: cat._count.id,
