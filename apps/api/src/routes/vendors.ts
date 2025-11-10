@@ -3,9 +3,18 @@ import prisma from '../lib/prisma';
 
 export const vendorsRouter = Router();
 
-// Optional helper types (not forced onto Prisma return types)
-// Keeping only VendorInfo; letting Prisma infer groupBy output to avoid conflicts.
+// Type definitions
 type VendorInfo = { vendorId: string; name: string };
+
+type VendorGroupResult = {
+  vendorId: string;
+  _sum: {
+    totalAmount: number | null;
+  };
+  _count: {
+    id: number;
+  };
+};
 
 vendorsRouter.get('/top10', async (req, res) => {
   try {
@@ -32,7 +41,7 @@ vendorsRouter.get('/top10', async (req, res) => {
     });
 
     // Fetch vendor details
-    const vendorIds = topVendors.map((v: { vendorId: string }) => v.vendorId);
+    const vendorIds = topVendors.map((v: VendorGroupResult) => v.vendorId);
     const vendors: VendorInfo[] = await prisma.vendor.findMany({
       where: {
         vendorId: {
@@ -47,7 +56,7 @@ vendorsRouter.get('/top10', async (req, res) => {
 
     const vendorMap = new Map(vendors.map((v: VendorInfo) => [v.vendorId, v.name]));
 
-    const result: Array<{ vendorId: string; vendorName: string; totalSpend: number; invoiceCount: number }> = topVendors.map((vendor: { vendorId: string; _sum: { totalAmount: number | null }; _count: { id: number } }) => ({
+    const result: Array<{ vendorId: string; vendorName: string; totalSpend: number; invoiceCount: number }> = topVendors.map((vendor: VendorGroupResult) => ({
       vendorId: vendor.vendorId,
       vendorName: vendorMap.get(vendor.vendorId) || 'Unknown',
       totalSpend: (vendor._sum.totalAmount ?? 0),

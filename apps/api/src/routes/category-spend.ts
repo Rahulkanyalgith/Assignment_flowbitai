@@ -3,6 +3,17 @@ import prisma from '../lib/prisma';
 
 export const categorySpendRouter = Router();
 
+// Type for Prisma groupBy result
+type CategoryGroupResult = {
+  category: string | null;
+  _sum: {
+    totalAmount: number | null;
+  };
+  _count: {
+    id: number;
+  };
+};
+
 categorySpendRouter.get('/', async (req, res) => {
   try {
     // Let Prisma infer groupBy return type to avoid intersection typing issues
@@ -29,7 +40,7 @@ categorySpendRouter.get('/', async (req, res) => {
       },
     });
 
-    const result: Array<{ category: string; totalSpend: number; invoiceCount: number }> = categorySpend.map((cat: { category: string | null; _sum: { totalAmount: number | null }; _count: { id: number } }) => ({
+    const result: Array<{ category: string; totalSpend: number; invoiceCount: number }> = categorySpend.map((cat: CategoryGroupResult) => ({
       category: cat.category ?? 'Uncategorized',
       totalSpend: (cat._sum.totalAmount ?? 0),
       invoiceCount: cat._count.id,
